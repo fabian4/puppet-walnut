@@ -56,19 +56,13 @@ class PuppetWalnut extends PUPPET.Puppet {
     PuppetWalnut.chatbotId = `sip:${PuppetWalnut.sipId}@botplatform.rcs.chinaunicom.cn`
     PuppetWalnut.baseUrl = `http://${config.serverRoot}/bot/${config.apiVersion}/${PuppetWalnut.chatbotId}`
     log.verbose('PuppetWalnut', 'constructor("%s")', JSON.stringify(options))
-
-    void initSever().then(() => {
-      log.info('PuppetWalnut-Sever', `Server running on port ${PuppetWalnut.port}`)
-      return null
-    })
-
-    void CacheManager.init().then(() => {
-      PuppetWalnut.cacheManager = CacheManager.Instance
-      return null
-    })
   }
 
   override async onStart (): Promise<void> {
+
+    await initSever()
+
+    PuppetWalnut.cacheManager = await CacheManager.init()
 
     updateToken()
 

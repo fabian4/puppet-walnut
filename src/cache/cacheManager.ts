@@ -42,6 +42,7 @@ export default class CacheManager {
     }
     this._instance = new CacheManager()
     await this._instance.initCache()
+    return CacheManager.Instance
   }
 
   public static async release () {
