@@ -27,7 +27,6 @@ import type { WalnutContactPayload, WalnutMessagePayload } from './help/struct.j
 import { send } from './help/message.js'
 import * as path from 'path'
 import CacheManager from './cache/cacheManager.js'
-import { ContactGender, ContactType } from 'wechaty-puppet/src/schemas/contact'
 
 export type PuppetWalnutOptions = PUPPET.PuppetOptions & {
   sipId: string,
