@@ -35,7 +35,7 @@ export default class CacheManager {
 
   public static async init () {
     log.verbose(PRE, 'init()')
-    this.baseDir = path.join(this.baseDir, path.sep, PuppetWalnut.sipId, path.sep)
+    this.baseDir = path.join(this.baseDir, PuppetWalnut.sipId, path.sep)
     if (this._instance) {
       log.verbose(PRE, 'init() CacheManager has been initialized, no need to initialize again.')
       return
@@ -55,8 +55,8 @@ export default class CacheManager {
     this._instance = undefined
   }
 
-  public static async initFlashStore (baseDir: string, name: string) {
-    const dir = path.join(baseDir, path.sep, name)
+  public static async initFlashStore (name: string) {
+    const dir = path.join(this.baseDir, name)
     return new FlashStore(dir)
   }
 
@@ -129,8 +129,8 @@ export default class CacheManager {
       await fs.mkdirp(CacheManager.baseDir)
     }
 
-    this.cacheMessageRawPayload = await CacheManager.initFlashStore(CacheManager.baseDir, 'messageRawPayload')
-    this.cacheContactRawPayload = await CacheManager.initFlashStore(CacheManager.baseDir, 'contactRawPayload')
+    this.cacheMessageRawPayload = await CacheManager.initFlashStore('messageRawPayload')
+    this.cacheContactRawPayload = await CacheManager.initFlashStore('contactRawPayload')
 
     log.verbose(PRE, `initCache() cacheDir="${CacheManager.baseDir}"`)
   }
@@ -148,7 +148,7 @@ export default class CacheManager {
         this.cacheContactRawPayload.close(),
       ])
 
-      this.cacheMessageRawPayload    = undefined
+      this.cacheMessageRawPayload = undefined
       this.cacheContactRawPayload = undefined
 
       log.silly(PRE, 'releaseCache() cache closed.')
