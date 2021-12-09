@@ -87,7 +87,7 @@ export default class CacheManager {
     if (!this.cacheMessageRawPayload || !messageId) {
       throw new Error(`${PRE} setMessage() has no cache.`)
     }
-    log.verbose(PRE, `setMessage(${messageId})`)
+    log.verbose(PRE, `setMessage(${messageId}): ${JSON.stringify(payload)}`)
     await this.cacheMessageRawPayload.set(messageId, payload)
   }
 
@@ -108,7 +108,7 @@ export default class CacheManager {
     if (!this.cacheContactRawPayload || !contactId) {
       throw new Error(`${PRE} setContact() has no cache.`)
     }
-    log.verbose(PRE, `setContact(${contactId})`)
+    log.verbose(PRE, `setContact(${contactId}): ${JSON.stringify(payload)}`)
     await this.cacheContactRawPayload.set(contactId, payload)
   }
 
