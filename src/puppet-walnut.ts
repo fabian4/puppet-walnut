@@ -23,10 +23,11 @@ import { FileBox } from 'file-box'
 import { initSever } from './sever/sever.js'
 import { config, VERSION } from './config.js'
 import { updateToken } from './help/request.js'
-import type { WalnutMessagePayload } from './help/struct.js'
+import type { WalnutContactPayload, WalnutMessagePayload } from './help/struct.js'
 import { send } from './help/message.js'
 import * as path from 'path'
 import CacheManager from './cache/cacheManager.js'
+import { ContactGender, ContactType } from 'wechaty-puppet/src/schemas/contact'
 
 export type PuppetWalnutOptions = PUPPET.PuppetOptions & {
   sipId: string,
@@ -142,8 +143,18 @@ class PuppetWalnut extends PUPPET.Puppet {
     return FileBox.fromFile(WECHATY_ICON_PNG)
   }
 
-  override async contactRawPayloadParser (payload: PUPPET.payloads.Contact) { return payload }
-  override async contactRawPayload (contactId: string): Promise<WalnutMessagePayload | undefined> {
+  override async contactRawPayloadParser (rawPayload: WalnutContactPayload): Promise<PUPPET.payloads.Contact> {
+    return {
+      id: rawPayload.phone,
+      gender: PUPPET.types.ContactGender.Unknown,
+      type: PUPPET.types.Contact.Unknown,
+      name: '',
+      avatar: '',
+      phone: [rawPayload.phone],
+    }
+  }
+
+  override async contactRawPayload (contactId: string): Promise<WalnutContactPayload | undefined> {
     log.verbose('PuppetWalnut', 'contactRawPayload(%s)', contactId)
     return PuppetWalnut.cacheManager?.getContact(contactId)
   }

@@ -4,7 +4,7 @@ import fs from 'fs-extra'
 import { log } from 'wechaty-puppet'
 import FlashStore from 'flash-store'
 import PuppetWalnut from '../puppet-walnut.js'
-import type { WalnutMessagePayload } from '../help/struct'
+import type { WalnutContactPayload, WalnutMessagePayload } from '../help/struct'
 
 const PRE = 'CacheManager'
 
@@ -67,7 +67,7 @@ export default class CacheManager {
    */
 
   private cacheMessageRawPayload?: FlashStore<string, WalnutMessagePayload>
-  private cacheContactRawPayload?: FlashStore<string, WalnutMessagePayload>
+  private cacheContactRawPayload?: FlashStore<string, WalnutContactPayload>
 
   /**
    * -------------------------------
@@ -96,7 +96,7 @@ export default class CacheManager {
    * Contact Section
    * --------------------------------
    */
-  public async getContact (contactId: string): Promise<WalnutMessagePayload | undefined> {
+  public async getContact (contactId: string): Promise<WalnutContactPayload | undefined> {
     if (!this.cacheContactRawPayload) {
       throw new Error(`${PRE} getContact() has no cache.`)
     }
@@ -104,7 +104,7 @@ export default class CacheManager {
     return await this.cacheContactRawPayload.get(contactId)
   }
 
-  public async setContact (contactId: string, payload: WalnutMessagePayload): Promise<void> {
+  public async setContact (contactId: string, payload: WalnutContactPayload): Promise<void> {
     if (!this.cacheContactRawPayload || !contactId) {
       throw new Error(`${PRE} setContact() has no cache.`)
     }
@@ -131,6 +131,8 @@ export default class CacheManager {
 
     this.cacheMessageRawPayload = await CacheManager.initFlashStore('messageRawPayload')
     this.cacheContactRawPayload = await CacheManager.initFlashStore('contactRawPayload')
+
+    await this.cacheContactRawPayload.set(PuppetWalnut.chatbotId, { phone: PuppetWalnut.chatbotId })
 
     log.verbose(PRE, `initCache() cacheDir="${CacheManager.baseDir}"`)
   }
