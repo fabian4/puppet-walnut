@@ -144,11 +144,11 @@ class PuppetWalnut extends PUPPET.Puppet {
 
   override async contactRawPayloadParser (rawPayload: WalnutContactPayload): Promise<PUPPET.payloads.Contact> {
     return {
-      id: rawPayload.phone,
+      id: '',
       gender: PUPPET.types.ContactGender.Unknown,
-      type: PUPPET.types.Contact.Unknown,
-      name: '',
-      avatar: '',
+      type: PUPPET.types.Contact.Individual,
+      name: rawPayload.phone,
+      avatar: 'https://avatars.githubusercontent.com/u/21285357',
       phone: [rawPayload.phone],
     }
   }
