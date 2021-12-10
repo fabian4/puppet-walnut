@@ -148,7 +148,7 @@ class PuppetWalnut extends PUPPET.Puppet {
       gender: PUPPET.types.ContactGender.Unknown,
       type: PUPPET.types.Contact.Individual,
       name: rawPayload.phone,
-      avatar: '',
+      avatar: 'https://raw.githubusercontent.com/fabian4/puppet-walnut/dev/docs/images/avatar.jpg',
       phone: [rawPayload.phone],
     }
   }
