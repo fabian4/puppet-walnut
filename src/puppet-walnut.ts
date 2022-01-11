@@ -25,7 +25,6 @@ import { config, VERSION } from './config.js'
 import { updateToken } from './help/request.js'
 import type { WalnutContactPayload, WalnutMessagePayload } from './help/struct.js'
 import { send } from './help/message.js'
-import * as path from 'path'
 import CacheManager from './cache/cacheManager.js'
 
 export type PuppetWalnutOptions = PUPPET.PuppetOptions & {

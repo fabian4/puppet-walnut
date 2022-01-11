@@ -53,13 +53,13 @@ WechatyBuilder.build()  // get a Wechaty instance
 
 ### Contact
 
-- ### [Properties](https://wechaty.js.org/docs/api/contact#properties)
+- #### [Properties](https://wechaty.js.org/docs/api/contact#properties)
 
   | Name | Type     | Description                                                  | Support | Details      |
   | ---- | -------- | ------------------------------------------------------------ | ------- | ------------ |
   | id   | `string` | Get Contact id. This function is depending on the Puppet Implementation, see [puppet-compatible-table](https://github.com/wechaty/wechaty/wiki/Puppet#3-puppet-compatible-table) | ✅       | Phone number |
 
-- ### [Instance Methods](https://wechaty.js.org/docs/api/contact#instance-methods)
+- #### [Instance Methods](https://wechaty.js.org/docs/api/contact#instance-methods)
 
   | Instance Methods                    | Return type                                                  | Support | Details               |
   | ----------------------------------- | ------------------------------------------------------------ | ------- | --------------------- |
@@ -77,30 +77,12 @@ WechatyBuilder.build()  // get a Wechaty instance
 
   > Default avatar 👉 https://raw.githubusercontent.com/wechaty/puppet-walnut/main/docs/images/avatar.webp
 
-- ### [Static Methods](https://wechaty.js.org/docs/api/contact#static-methods)
+- #### [Static Methods](https://wechaty.js.org/docs/api/contact#static-methods)
 
   | Static Methods            | Return Type                 | Support | Detail |
   | ------------------------- | --------------------------- | ------- | ------ |
   | find(query)               | `Promise <Contact \| null>` | ✅       |        |
   | findAll(Query Arguements) | `Promise <Contact []>`      | ✅       |        |
-
-### Message
-
-- from()
-- to()
-- room()
-- text()
-- say(text Or Contact Or File)	
-- type()
-- self()
-- mention()
-- mentionSelf()
-- forward(to)	
-- date()
-- age()
-- toFileBox()
-- toContact()
-- toUrlLink()
 
 ## 项目介绍
 
