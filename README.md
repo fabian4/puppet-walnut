@@ -90,7 +90,7 @@ WechatyBuilder.build()  // get a Wechaty instance
 
 根据项目的难易程度和完成情况，参与者还可获取“开源软件供应链点亮计划-暑期2021”活动奖金和奖杯。
 
-官网：<https://summer.iscas.ac.c>
+官网：<https://summer.iscas.ac.cn>
 
 ## Wechaty
 
