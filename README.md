@@ -65,14 +65,14 @@ WechatyBuilder.build()  // get a Wechaty instance
   | ----------------------------------- | ------------------------------------------------------------ | ------- | --------------------- |
   | say(text Or Contact Or File Or Url) | `Promise`                                                    | ✅       |                       |
   | name()                              | `String`                                                     | ✅       | Phone number          |
-  | alias(newAlias)                     | `Promise`                                                    | ✅       | ⚠                     |
+  | alias(newAlias)                     | `Promise`                                                    | ✅       |                     |
   | friend()                            | `Boolean or null`                                            | ✅       | True           |
   | type()                              | `ContactType.Unknown or ContactType.Personal or ContactType.Official` | ✅       | ContactType.Personal  |
   | gender()                            | `ContactGender.Unknown or ContactGender.Male or ContactGender.Female` | ✅       | ContactGender.Unknown |
   | province()                          | `String or null`                                             | ❌       |                       |
   | city()                              | `String or null`                                             | ❌       |                       |
   | avatar()                            | `Promise`                                                    | ✅       | Default avatar        |
-  | sync()                              | `Promise`                                                    | ✅       | ⚠                     |
+  | sync()                              | `Promise`                                                    | ✅       |                     |
   | self()                              | `Boolean`                                                    | ✅       |                       |
 
   > Default avatar 👉 https://raw.githubusercontent.com/wechaty/puppet-walnut/main/docs/images/avatar.webp
