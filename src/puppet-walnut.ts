@@ -85,6 +85,12 @@ class PuppetWalnut extends PUPPET.Puppet {
 
     this.login(PuppetWalnut.chatbotId)
 
+    this.emit('ready', {
+      data: 'ready',
+    })
+
+    this.state.on(true)
+
     return Promise.resolve(undefined)
   }
 
@@ -92,8 +98,14 @@ class PuppetWalnut extends PUPPET.Puppet {
     log.verbose('PuppetWalnut', 'onStop()')
     if (this.isLoggedIn) {
       await this.logout()
+
+      this.emit('logout', { contactId: this.id, data: 'logout by self' })
     }
     return Promise.resolve(undefined)
+  }
+
+  override ding(_data?: string): void {
+    this.emit('dong', { data: 'Everything is ok' })
   }
 
   /**
