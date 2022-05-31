@@ -19,8 +19,6 @@
  *
  */
 
-import 'dotenv/config.js'
-
 import {
   log,
 }             from 'wechaty-puppet'
