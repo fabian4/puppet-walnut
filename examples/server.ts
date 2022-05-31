@@ -44,8 +44,11 @@ __________________________________________________
 
 `
 
+log.level('silly')
+process.env['WECHATY_PUPPET_SERVICE_NO_TLS_INSECURE_SERVER'] = 'true'
+
 async function main () {
-  const token = 'insecure_aa3d0146-eab3-4905-b88f-78f33d042661'
+  const token = 'puppet_wxwork_b88f78f33d042661'
 
   console.info(welcome)
   log.info('Client', 'Starting for WECHATY_TOKEN: %s', token)

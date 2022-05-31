@@ -89,7 +89,7 @@ class PuppetWalnut extends PUPPET.Puppet {
       data: 'ready',
     })
 
-    this.state.on(true)
+    // this.state.on(true)
 
     return Promise.resolve(undefined)
   }
