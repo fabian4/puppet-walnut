@@ -43,7 +43,7 @@ __________________________________________________
 `
 
 log.level('silly')
-process.env['WECHATY_PUPPET_SERVICE_NO_TLS_INSECURE_SERVER'] = 'true'
+// process.env['WECHATY_PUPPET_SERVICE_NO_TLS_INSECURE_SERVER'] = 'true'
 
 async function main () {
   const token = 'puppet_wxwork_b88f78f33d042661'
