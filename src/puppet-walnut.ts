@@ -50,6 +50,8 @@ class PuppetWalnut extends PUPPET.Puppet {
   static cacheManager?: CacheManager
   static override readonly VERSION = VERSION
 
+  private _heartBeatTimer?: NodeJS.Timeout;
+
   constructor (options?: PuppetWalnutOptions) {
     super(options)
     PuppetWalnut.instance = this
@@ -85,6 +87,8 @@ class PuppetWalnut extends PUPPET.Puppet {
 
     this.login(PuppetWalnut.chatbotId)
 
+    this._startPuppetHeart()
+
     this.emit('ready', {
       data: 'ready',
     })
@@ -97,12 +101,14 @@ class PuppetWalnut extends PUPPET.Puppet {
     if (this.isLoggedIn) {
       await this.logout()
 
+      this._stopPuppetHeart()
+
       this.emit('logout', { contactId: this.id, data: 'logout by self' })
     }
     return Promise.resolve(undefined)
   }
 
-  override ding(_data?: string): void {
+  override ding (_data?: string): void {
     this.emit('dong', { data: 'Everything is ok' })
   }
 
@@ -337,6 +343,27 @@ class PuppetWalnut extends PUPPET.Puppet {
       nextPageToken: undefined,
       response: [],
     }
+  }
+
+  private _startPuppetHeart (firstTime: boolean = true) {
+    if (firstTime && this._heartBeatTimer) {
+      return
+    }
+
+    this.emit('heartbeat', { data: 'heartbeat@padlocal' })
+
+    this._heartBeatTimer = setTimeout(() => {
+      this._startPuppetHeart(false)
+    }, 15 * 1000) // 15s
+  }
+
+  private _stopPuppetHeart () {
+    if (!this._heartBeatTimer) {
+      return
+    }
+
+    clearTimeout(this._heartBeatTimer)
+    this._heartBeatTimer = undefined
   }
 
 }
