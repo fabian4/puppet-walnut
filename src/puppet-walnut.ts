@@ -350,7 +350,7 @@ class PuppetWalnut extends PUPPET.Puppet {
       return
     }
 
-    this.emit('heartbeat', { data: 'heartbeat@padlocal' })
+    this.emit('heartbeat', { data: 'heartbeat@walnut' })
 
     this._heartBeatTimer = setTimeout(() => {
       this._startPuppetHeart(false)
