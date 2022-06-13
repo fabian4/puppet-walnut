@@ -5,6 +5,7 @@ import PuppetWalnut from '../puppet-walnut.js'
 import type { FileBoxInterface } from 'file-box'
 import FormData from 'form-data'
 import type { FileItem } from './struct.js'
+import * as util from "util";
 
 const headers = {
   'Content-Type': 'application/json',
@@ -88,8 +89,8 @@ export function post (url: string, data = {}) {
 
 axios.interceptors.request.use(
   function (config) {
-    // log.silly('PuppetWalnut-Axios',
-    //   `Params: ${util.inspect(config.data, false, 4, true)}, Url: ${config.url}`)
+    log.silly('PuppetWalnut-Axios',
+      `Params: ${util.inspect(config.data, false, 4, true)}, Url: ${config.url}`)
     return config
   },
 )
@@ -98,9 +99,6 @@ axios.interceptors.response.use(
   function (response) {
     log.silly('PuppetWalnut-Axios',
       `Response: ${JSON.stringify(response.data)}`)
-    // if (response.data.errorCode !== 0) {
-    //   log.error('PuppetWalnut-Axios', JSON.stringify(response.data))
-    // }
     return response
   }, function (error) {
     log.info(error)
